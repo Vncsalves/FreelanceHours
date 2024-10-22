@@ -16,7 +16,11 @@ Este repositório é dedicado ao meu projeto **FreelanceHours**, que estou utili
 
 ## Objetivo 💡
 
-Para isso, estou desenvolvendo o FreelanceHours, um sistema de freelancer no qual o importante são as horas de trabalho.
+O objetivo central desse projeto é aprender os conceitos básicos do lávarel, utilizando ele como uma forma de caderno de anotações mostrando tudo que aprendi até o momento.
+
+O sistema em si se trata de uma site de freelancer no qual o usuário coloca sua projeto/necessidade e os Devs proproem em quanto tempo conseguem realizar o projeto, assim a aquele que ficar em primeiro com a menor quantiadade de horas para desenvolver, ganha o projeto
+
+Até o momento o foca está no banco, aprendendo diversos conceitos e posteriomente vamos para as rotas e componentes com LiveWire
 
 ## Como Rodar o Projeto ♻
 
