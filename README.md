@@ -20,7 +20,7 @@ O objetivo central desse projeto é aprender os conceitos básicos do lávarel, 
 
 O sistema em si se trata de uma site de freelancer no qual o usuário coloca sua projeto/necessidade e os Devs proproem em quanto tempo conseguem realizar o projeto, assim a aquele que ficar em primeiro com a menor quantiadade de horas para desenvolver, ganha o projeto
 
-Até o momento o foca está no banco, aprendendo diversos conceitos e posteriomente vamos para as rotas e componentes com LiveWire
+Até o momento o foca está no banco, tanto que ainda não temos nada visual, estou aprendendo diversos conceitos e posteriomente vamos para as rotas e componentes com LiveWire
 
 ## Como Rodar o Projeto ♻
 
