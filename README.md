@@ -1,66 +1,163 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# FreelanceHours
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Este repositório é dedicado ao meu projeto **FreelanceHours**, que estou utilizando para aprender a utilizar o framework Laravel.
 
-## About Laravel
+## Sumário
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Objetivo](#objetivo)
+- [Como Rodar o Projeto](#como-rodar-o-projeto)
+- [Materiais de Estudo](#materiais-de-estudo)
+  - [Migration](#migration)
+  - [Factories](#factories)
+  - [Seeders](#seeders)
+- [Funcionalidades Planejadas](#funcionalidades-planejadas)
+- [Contribuições](#contribuições)
+- [Contato](#contato)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Objetivo 💡
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Para isso, estou desenvolvendo o FreelanceHours, um sistema de freelancer no qual o importante são as horas de trabalho.
 
-## Learning Laravel
+## Como Rodar o Projeto ♻
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Para rodar o projeto, você pode usar o Herd, que facilita a instalação do PHP e do ambiente Laravel. Siga os passos abaixo:
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Certifique-se de ter o Herd instalado no seu sistema.
+2. Navegue até a pasta do seu projeto no terminal.
+3. Execute o comando:
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+    ```bash
+    php artisan serve
+    ```
 
-## Laravel Sponsors
+Isso iniciará a aplicação em [http://localhost:8000](http://localhost:8000).
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+## Materiais de Estudo 📘
 
-### Premium Partners
+Atualmente, estou focado na parte de banco de dados do Laravel. Aqui estão alguns dos tópicos que estou estudando:
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+- **Migration**: Aprender a criar e gerenciar a estrutura do banco de dados usando migrações do Laravel, uma forma muito simples de criar a estrutura.
 
-## Contributing
+    ```php
+    <?php
+    ## O migration é uma maneira de definir a estrutura do banco de dados do nosso sistema, cada parte é responsável por uma parte do banco.
+    use Illuminate\Database\Migrations\Migration;
+    use Illuminate\Database\Schema\Blueprint;
+    use Illuminate\Support\Facades\Schema;
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    return new class extends Migration
+    {
+        ## O up é usado quando a migração é executada, ou seja, cria as tabelas no banco.
+        public function up(): void
+        {
+            ## Aqui estamos criando a tabela users, por padrão o Laravel sempre busca o plural, e aqui definimos os campos.
+            Schema::create('users', function (Blueprint $table) {
+                $table->id();
+                $table->string('name');
+                $table->string('email')->unique();
+                $table->string('avatar')->nullable();
+                $table->unsignedTinyInteger('rating')->default(0); ## O unsignedTinyInteger serve para valores pequenos.
+                $table->timestamps(); ## Adiciona as colunas created_at e updated_at.
+            });
 
-## Code of Conduct
+            ## Agora a tabela sessions armazena informações da sessão do usuário.
+            Schema::create('sessions', function (Blueprint $table) {
+                $table->string('id')->primary();
+                $table->foreignId('user_id')->nullable()->index();
+                $table->string('ip_address', 45)->nullable();
+                $table->text('user_agent')->nullable();
+                $table->longText('payload');
+                $table->integer('last_activity')->index();
+            });
+        }
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+        ## O down é chamado quando a migração é revertida. Aqui, deleta as tabelas criadas se elas existirem.
+        public function down(): void
+        {
+            Schema::dropIfExists('users');
+            Schema::dropIfExists('sessions');
+        }
+    };
+    ```
 
-## Security Vulnerabilities
+- **Factories**: Usamos na criação dos preenchimentos dos bancos, onde definimos o que será recebido, como um nome fake.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+    ```php
+    <?php
+    ## As Factories são chamadas de fábricas de modelos, aqui conseguimos alimentar com dados fictícios para teste.
+    namespace Database\Factories;
 
-## License
+    use Illuminate\Database\Eloquent\Factories\Factory;
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+    class UserFactory extends Factory
+    {
+        ## Define como serão os registros fakes
+        public function definition(): array
+        {
+            return [
+                'name' => fake()->name(), ## O fake é usado assim para criar nomes sem você ter dor de cabeça para pensar neles.
+                'email' => fake()->unique()->safeEmail(), ## Aqui também, podemos ter o adicional de ser um e-mail único.
+                'rating' => fake()->randomElement([1, 2, 3, 4, 5]), ## Gera uma nota aleatória.
+                'avatar' => 'https://avatar.iran.liara.run/public' ## URL de avatar padrão.
+            ];
+        }
+    }
+    ```
+
+- **Seeders**: Quando aplicamos aquilo que foi feito nas Factories, usando para criar instâncias no banco.
+
+    ```php
+    <?php
+    namespace Database\Seeders;
+
+    use App\Models\User;
+    use App\Models\Project; // Importa a classe Project
+    use App\Models\Proposal; // Importa a classe Proposal
+    use Illuminate\Database\Seeder;
+
+    class DatabaseSeeder extends Seeder
+    {
+        /**
+         * Popula o banco de dados com dados fictícios.
+         */
+        public function run(): void
+        {
+            // Cria 247 usuários fictícios
+            User::factory()
+                ->count(247)
+                ->create();
+
+            // Seleciona 10 usuários aleatórios e cria projetos e propostas para eles
+            User::query()->inRandomOrder()->limit(10)->get()
+                ->each(function (User $u) {
+                    // Cria um projeto para o usuário
+                    $project = Project::factory()->create(['created_by' => $u->id]);
+
+                    // Cria propostas para o projeto
+                    Proposal::factory()
+                        ->count(random_int(4, 45)) // Gera um número aleatório de propostas
+                        ->create(['project_id' => $project->id]); // Cria as propostas ligadas ao projeto
+                });
+        }
+    }
+    ```
+
+## Funcionalidades Planejadas ⚙
+
+A aplicação FreelanceHours permitirá que os usuários:
+
+- Criar solicitações de trabalho.
+- Propor suas horas de trabalho.
+- Enviar E-mails para mostrar sua posição no ranking de freelancer.
+
+## Contribuições 👨‍👩‍👦‍👦
+
+Contribuições são bem-vindas! Como é meu primeiro contato com o framework, está sendo um desafio e é diferente de tudo que já vi, então estou aberto a contribuições e ensinamentos.
+
+## Contato 🏳
+
+Para qualquer dúvida ou sugestão, você pode me encontrar em vncsalves2278@gmail.com ou em meu Instagram Vncs_as.
+
+---
+
+Este README será atualizado à medida que eu fizer progressos nos meus estudos e no desenvolvimento da aplicação. Fique à vontade para acompanhar!
