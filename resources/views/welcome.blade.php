@@ -1,6 +1,6 @@
 
 <x-layouts.app>
-    <livewire:teste />
+    vitinho é lindo nss
 </x-layouts.app>
 
 

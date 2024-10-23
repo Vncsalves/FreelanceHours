@@ -16,11 +16,11 @@ Este repositório é dedicado ao meu projeto **FreelanceHours**, que estou utili
 
 ## Objetivo 💡
 
-O objetivo central desse projeto é aprender os conceitos básicos do lávarel, utilizando ele como uma forma de caderno de anotações mostrando tudo que aprendi até o momento.
+O objetivo central deste projeto é aprender os conceitos básicos do Laravel, utilizando-o como um caderno de anotações para registrar tudo que aprendi até o momento.
 
-O sistema em si se trata de uma site de freelancer no qual o usuário coloca sua projeto/necessidade e os Devs proproem em quanto tempo conseguem realizar o projeto, assim a aquele que ficar em primeiro com a menor quantiadade de horas para desenvolver, ganha o projeto
+O sistema se trata de um site de freelancers, onde o usuário publica seu projeto ou necessidade, e os desenvolvedores propõem em quanto tempo conseguem realizá-lo. Assim, aquele que oferecer a menor quantidade de horas para desenvolver o projeto será o vencedor.
 
-Até o momento o foca está no banco, tanto que ainda não temos nada visual, estou aprendendo diversos conceitos e posteriomente vamos para as rotas e componentes com LiveWire
+Até o momento, o foco está no banco de dados, e ainda não temos uma interface visual. Estou aprendendo diversos conceitos e, em breve, avançaremos para as rotas e componentes com LiveWire.
 
 ## Como Rodar o Projeto ♻
 
@@ -150,9 +150,9 @@ Atualmente, estou focado na parte de banco de dados do Laravel. Aqui estão algu
 
 A aplicação FreelanceHours permitirá que os usuários:
 
-- Criar solicitações de trabalho.
-- Propor suas horas de trabalho.
-- Enviar E-mails para mostrar sua posição no ranking de freelancer.
+- Criem solicitações de trabalho.
+- Proponham suas horas de trabalho.
+- Enviem e-mails para mostrar sua posição no ranking de freelancers.
 
 ## Contribuições 👨‍👩‍👦‍👦
 
