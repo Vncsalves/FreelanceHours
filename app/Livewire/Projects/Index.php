@@ -1,8 +1,8 @@
 <?php
 
-namespace App\Http\Livewire\Projects;
+namespace App\Livewire\Projects;
 
-use App\Models\Projects;
+use App\Models\Project;
 use Livewire\Attributes\Computed;
 use Livewire\Component;
 
@@ -18,6 +18,7 @@ class Index extends Component
     }
 
 #[Computed()]
+
 
     public function projects() 
     {
