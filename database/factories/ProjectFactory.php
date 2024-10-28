@@ -13,7 +13,7 @@ class ProjectFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => implode(' ', fake()->words(5)),
+            'title' => collect(fake()->words(5))->join(' '),
             'description' => fake()->paragraph(),
             'ends_at' => fake()->dateTimeBetween('now', '+3 days'),
             'status' => fake()->randomElement(['open', 'closed']),

@@ -1,11 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProjectsController;
 
-// Define uma rota para a página inicial que aponta para a view 'projects.index'
-Route::view('/', 'welcome')->name('welcome');
+// Define a rota inicial para a página de projetos
+Route::get('/', [ProjectsController::class, 'index'])->name('projects.index');
 
-// Define uma rota para mostrar um projeto específico
-Route::view('/project/{project}', 'projects.show')->name('project.show');
+// Define a rota para exibir um projeto específico baseado no ID ou slug
+Route::get('/project/{project}', [ProjectsController::class, 'show'])->name('projects.show');
+
 
 

@@ -2,22 +2,26 @@
 
 namespace App\Http\Livewire\Projects;
 
+use App\Models\Projects;
+use Livewire\Attributes\Computed;
 use Livewire\Component;
-use App\Models\Project;
+
+
 
 class Index extends Component
+
+
 {
-    public $projects;
-
-    public function mount()
-    {
-        // Carregue os projetos do banco de dados
-        $this->projects = Project::all();
-    }
-
     public function render()
     {
         return view('livewire.projects.index');
+    }
+
+#[Computed()]
+
+    public function projects() 
+    {
+        return Project::query()->inRandomOrder()->get();
     }
 }
 

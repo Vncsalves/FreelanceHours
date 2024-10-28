@@ -1,16 +1,10 @@
 <div>
-    @if($projects && $projects->isNotEmpty())
-        @foreach($projects as $project)
-            <li>
-                <a href="{{ route('project.show', $project) }}">
-                    {{$project->id}}. {{$project->title}}
-                </a>
-            </li>
-        @endforeach
-    @else
-        <li>Nenhum projeto encontrado.</li>
-    @endif
+    <!-- Exibir a lista de projetos aqui -->
+    @foreach($this->projects() as $project)
+        <p>{{ $project->name }}</p>
+    @endforeach
 </div>
+
 
 
 
